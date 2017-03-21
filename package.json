@@ -1,0 +1,27 @@
+{
+  "name": "learnyoureact",
+  "version": "1.0.0",
+  "description": "Exercises about learnyoureact school",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "learnyoureact-school"
+  },
+  "keywords": [
+    "react",
+    "school"
+  ],
+  "author": "José A. Villarreal",
+   "license": "MIT",
+   "dependencies": {
+      "babel": "^6.5.2",
+       "body-parser": "^1.15.2",
+       "express": "^4.14.0",
+       "express-react-views": "^0.10.2",
+       "react": "^15.4.1",
+       "react-dom": "^15.4.1"
+  }
+}
