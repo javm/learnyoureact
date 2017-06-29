@@ -8,7 +8,7 @@ let style = {
 };
 
 export default class TodoBox extends React.Component {
-    
+
      render() {
 	 return (<div className="todoBox">
 	     <h1>Todos</h1>
@@ -42,16 +42,19 @@ class Todo extends React.Component {
     constructor(props) {
         super(props);
 	this.state = {checked: false}
+	this.handleChange = this.handleChange.bind(this);
     }
     handleChange(){
+	//console.log(this.state);
+	console.log("OnChange");
 	if(this.state.checked) {
 	    this.state.checked = false;
 	}else{
 	    this.state.checked = true;
 	}
+
     }
     render(){
-
 	 return (
 	     <tr>
 	     <td style={style.tableContent}>
