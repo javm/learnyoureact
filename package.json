@@ -4,7 +4,8 @@
   "description": "Exercises about learnyoureact school",
   "main": "app.js",
   "scripts": {
-    "test": "mocha test"
+    "test": "mocha test",
+    "start": "babel-node --presets node6 program.js 3000 Milk 13:00"
   },
   "repository": {
     "type": "git",
@@ -14,14 +15,24 @@
     "react",
     "school"
   ],
-  "author": "José A. Villarreal",
-   "license": "MIT",
-   "dependencies": {
-      "babel": "^6.5.2",
-       "body-parser": "^1.15.2",
-       "express": "^4.14.0",
-       "express-react-views": "^0.10.2",
-       "react": "^15.4.1",
-       "react-dom": "^15.4.1"
+  "author": "Josï¿½ A. Villarreal",
+  "license": "MIT",
+  "dependencies": {
+    "babel": "^6.5.2",
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-node6": "^11.0.0",
+    "babel-preset-react": "^6.24.1",
+    "babelify": "^7.3.0",
+    "body-parser": "^1.15.2",
+    "browserify": "^14.4.0",
+    "express": "^4.14.0",
+    "express-react-views": "^0.10.2",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-stage-2": "^6.24.1"
   }
 }
