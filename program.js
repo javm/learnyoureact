@@ -1,17 +1,14 @@
-var express = require('express');
-var React = require('react');
-var ReactDOMServer = require('react-dom/server');
-var DOM = React.DOM;
-var body = DOM.body;
-var div = DOM.div;
-var script = DOM.script;
+const express = require('express');
+const React = require('react');
+const ReactDOMServer = require('react-dom/server');
+const DOM = React.DOM;
+const body = DOM.body;
+const div = DOM.div;
+const script = DOM.script;
 
-var browserify = require('browserify');
-var babelify = require("babelify");
-
-
-
-var app = express();
+const browserify = require('browserify');
+const babelify = require("babelify");
+const app = express();
 
 app.set('port', (process.argv[2] || 3000));
 app.set('view engine', 'jsx');
@@ -30,10 +27,10 @@ require('babel-register')({
   presets: [ 'es2015',  'react' ]
 });
 */
-var TodoBox = require('./views/index.jsx').default;
+const TodoBox = require('./views/index.jsx').default;
 
 
-var data = [
+const data = [
   {title: "Shopping", detail: process.argv[3]},
   {title: "Hair cut", detail: process.argv[4]}
 ];
@@ -47,36 +44,40 @@ app.use('/', function(req, res) {
 
 app.use('/bundle.js', function (req, res) {
   res.setHeader('content-type', 'application/javascript');
-  
-  browserify({ debug: true })
+
+  browserify({
+      debug: true
+    })
     .transform(babelify.configure({
       presets: ["react", "es2015"],
       compact: false
-    }))
-    .require("./app.js", { entry: true })
-    .bundle()
-    .pipe(res);
+    })).require("./app.js", { entry: true }).bundle().pipe(res);
 });
 
 app.use('/', function (req, res) {
-  var initialData = JSON.stringify(data);
-  var el = React.createElement(TodoBox, {data: data});
-  console.log(el);
-  var markup = ReactDOMServer.renderToString(el);
+  const initialData = JSON.stringify(data);
+  const el = React.createElement(TodoBox, {data: data});
+  const markup = ReactDOMServer.renderToString(el);
   //var markup = ReactDOMServer.renderToStaticMarkup(el);
-  
+
   res.setHeader('Content-Type', 'text/html');
-  
-  var html = ReactDOMServer.renderToStaticMarkup(body(null,
-						      div({id: 'app', dangerouslySetInnerHTML: {__html: markup}}),
-						      script({
-							id: 'initial-data',
-							type: 'text/plain',
-							'data-json': initialData
-						      }),
-						      script({src: '/bundle.js'})
-						     ));
-  
+
+  const html = ReactDOMServer.renderToStaticMarkup(body(null,
+    div({
+      id: 'app',
+      dangerouslySetInnerHTML: {
+        __html: markup
+      }
+    }),
+    script({
+      id: 'initial-data',
+      type: 'text/plain',
+      'data-json': initialData
+    }),
+    script({
+      src: '/bundle.js'
+    })
+  ));
   res.end(html);
 });
 
